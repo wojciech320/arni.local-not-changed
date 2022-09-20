@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Charts</title>
+
+    <style>
+      .chartBox {
+        position: relative;
+        height: 280px;
+      }
+
+      .chartButtons {
+        display: flex;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        column-gap: 3px;
+        align-items: flex-start;
+      }
+
+      .look {
+        width: 70px;
+        height: 25px;
+      }
+    </style>
+
+    <script type="text/javascript">
+      'use strict';
+      $(document).ready(function () {
+        var ctx3 = document.getElementById('canvasChartPres');
+        myChartPres = new Chart(ctx3, {
+          type: 'line',
+          data: {
+            labels: xSensPresVal,
+            datasets: [
+              {
+                label: 'Diffrental pressure IsaA-I/IsaB-I in pascal',
+                data: ySensPresVal,
+                backgroundColor: 'rgba(50,255,80,0.2)',
+                borderColor: 'rgba(50,255,80,0.2)',
+                yAxisID: 'y',
+                tension: 0.4,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                type: 'linear',
+                backgroundColor: 'rgba(50,255,80,0.2)',
+                borderColor: 'rgba(50,255,80,0.2)',
+                position: 'left',
+              },
+            },
+          },
+        });
+      });
+
+    </script>
+  </head>
+  <body>
+    <div class="charts">
+      <div class="chartBox">
+        <canvas id="canvasChartPres"></canvas>
+      </div>
+      <div class="chartButtons">
+        <button
+          id="chartDay"
+          type="button"
+          onclick="getChartData($('#presId').val(), 0, 'pres', 'fillUp', '8');"
+        >
+          <span class="look">8 hours</span>
+        </button>
+        <button
+          id="chartWeek"
+          type="button"
+          onclick="getChartData($('#presId').val(), 0, 'pres', 'fillUp', 'week');"
+        >
+          <span class="look">Week</span>
+        </button>
+        <button
+          id="chartMonth"
+          type="button"
+          onclick="getChartData($('#presId').val(), 0, 'pres', 'fillUp', 'month');"
+        >
+          <span class="look">Month</span>
+        </button>
+        <button
+          id="chartYear"
+          type="button"
+          onclick="getChartData($('#presId').val(), 0, 'pres', 'fillUp', 'year');"
+        >
+          <span class="look">Year</span>
+        </button>
+        <input
+          id="presId"
+          type="input"
+          style="width: 85px;"
+          value="Dpr-001-01"
+        />
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Basic Grids</title>
+    <link rel="shortcut icon" href="#" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="Washing/TimerFunctions.js"></script>
+    <script src="..\Scripts\LoadHTMLfiles.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        'use strict';
+
+        $(document).ready(function () {
+        }
+    </script>
+
+    <!-- The container -->
+    <style>
+        .mainGrid {
+            display: grid;
+            border: 1px solid #fff;
+            border-color: #332723;
+            align-items: stretch;
+            justify-content: stretch;
+            grid-template-columns: auto auto;
+            grid-template-rows: auto auto;
+            background-color: #eeeeee;
+            padding: 10px;
+            border-radius: 10px;
+            row-gap: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <div id="mainContainer" class="mainGrid">
+            <div class="1">Arni</div>
+            <div class="2">Hlynur</div>
+            <div class="3">Hrund</div>
+            <div class="4">Brynja</div>
+
+        </div>
+    </form>
+</body>
+</html>

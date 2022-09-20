@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .container2 {
+        display: grid;
+        grid-template-columns: 70px 120px;
+        padding: 4px;
+        column-gap: 3px;
+        row-gap: 3px;
+        background: #ddd;
+        border: solid;
+        border-radius: 3px;
+        border-width: thin;
+        width: 195px;
+        font-family: Verdana;
+        font-size: 1.3em;
+        white-space: nowrap;
+      }
+      .procedureWashing {
+        grid-column: 1 / span 2;
+        text-align: center;
+        font-weight: 500;
+      }
+      .dato {
+        background-color: #aee;
+        padding: 2px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .time {
+        background-color: #aee;
+        padding: 2px;
+        border-radius: 5px;
+        text-align: center;
+      }
+      .txtDate {
+        background-color: #feb;
+        text-align: center;
+        padding: 2px;
+        border-radius: 5px;
+      }
+      .txtTime {
+        background-color: #feb;
+        align-self: center;
+        text-align: center;
+        padding: 2px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container2">
+      <div class="procedureWashing">
+        Washing ended
+      </div>
+      <div class="dato">
+        Date:
+      </div>
+      <div id="txtDateEnd" class="txtDate">
+        __/__/__
+      </div>
+      <div class="time">
+        Time:
+      </div>
+      <div id="txtTimeEnd" class="txtTime">
+        __:__
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+<html>
+  <html xmlns="http://www.w3.org/1999/xhtml">
+    <head runat="server">
+      <title></title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"
+      ></script>
+      <script src="Washing/TimerFunctions.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function () {
+          $("#bt").click(function () {
+            //alert("kajdf");
+            getComputers();
+          });
+        });
+      </script>
+      <style>
+        .container {
+          background-color: aqua;
+          border-color: #cc3300;
+          padding: 30px;
+          top: 100px;
+          left: 100px;
+          width: 150px;
+          height: 500px;
+          /*display: none;*/
+        }
+
+        .item {
+          border-color: #000000;
+          border: 4px dashed;
+          padding: 5px;
+        }
+        /* Tooltip container */
+        .tooltip {
+          position: relative;
+          display: inline-block;
+          border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+        }
+
+        /* Tooltip text */
+        .tooltip .tooltiptext {
+          visibility: hidden;
+          width: 120px;
+          background-color: #555;
+          color: #fff;
+          text-align: center;
+          padding: 5px 0;
+          border-radius: 6px;
+
+          /* Position the tooltip text */
+          position: absolute;
+          z-index: 1;
+          bottom: 125%;
+          left: 50%;
+          margin-left: -60px;
+
+          /* Fade in tooltip */
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+
+        /* Tooltip arrow */
+        .tooltip .tooltiptext::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          margin-left: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: #555 transparent transparent transparent;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .tooltip:hover .tooltiptext {
+          visibility: visible;
+          opacity: 1;
+        }
+      </style>
+    </head>
+    <body>
+      <form id="form1" runat="server">
+        <div id="selection" class="container">
+          <div>
+            <div class="item" click="editComputer(" + Id + ");" >
+              <div class="tooltip">
+                <span class="tooltiptext">Tooltip text</span>
+                <div>Esp32 Thing Plus</div>
+                <div></div>
+                <div></div>
+                <div style="display: none;">
+                  <div>1</div>
+                  <div></div>
+                  <div>??</div>
+                  <div>2022-01-01T00:00:00</div>
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button id="bt" type="button">Computers</button>
+        </div>
+      </form>
+    </body>
+  </html>
+</html>

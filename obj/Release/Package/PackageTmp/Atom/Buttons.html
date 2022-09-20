@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Bottons</title>
+    <!-- The container -->
+    <style>
+      .buttons {
+        background-color: #8de;
+        font-family: Verdana;
+        font-size: 1.1em;
+        height: 35px;
+        width: 140px;
+        border: 2px solid #eee;
+        border-radius: 5px;
+      }
+    </style>
+    <script type="text/javascript">
+      $('#startWashing').click(function () {
+
+        //var elm = $("#washingStarted").html();
+        //$(elm).find($("#txtDateStart")).text());
+        // alert($('#txtTimeStart').text());
+        //$('#txtTimeStart').text() = "arni";
+        //var txt = $('#txtTimeStart');
+        //txt.text = "arni";
+        //var txtStartD = $('#txtDateStart');
+        $('#txtDateStart').text(new Date().format('dd.MMM.yy'));
+
+        //txtStartD.text = new Date().format('dd.MMM.yy");
+        //txtStartD.style.backgroundColor = "#ebe";
+        //var txtStartT = $('#txtTimeStart');
+        //$('#txtTimeStart').text(new Date().format("HH:mm:ss"));
+        $('#txtTimeStart').text('12:23:00');
+
+        //txtStartT.style.backgroundColor = "#ebe";
+        //var sensId = $("#txtSensorPoolID").text();
+        //$.ajax({
+        //    url: "Sensors.asmx/StartWashing",
+        //    data: { sensorPoolId: sensId },
+        //    method: "post",
+        //    dataType: "xml",
+        //    error: function (request, status, error) {
+        //        alert(request.responseText);
+        //    },
+        //    success: function (data) {
+        //        var txtStartD = document.getElementById("txtStartDate");
+        //        txtStartD.value = new Date().format("dd.MMM.yy");
+        //        txtStartD.style.backgroundColor = "#ebe";
+        //        var txtStartT = document.getElementById("txtStartTime");
+        //        txtStartT.value = new Date().format("hh:mm");
+        //        txtStartT.style.backgroundColor = "#ebe";
+        //    },
+        setInterval(function () {
+          countDown();
+        }, 1000);
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <input
+        type="button"
+        id="startWashing"
+        class="buttons"
+        value="Start Washing"
+      />
+    </div>
+  </body>
+</html>

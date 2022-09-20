@@ -1,0 +1,51 @@
+<html>
+   <head>
+      <title>chart.js 2.1</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.bundle.min.js"></script>
+      <script type="text/javascript">
+    window.onload=function(){/*from w  ww.  j  a va2s . com*/
+function newDate(days) {
+  return moment().add(days, 'd');
+}
+var config = {
+  type: 'line',
+  data: {
+    labels: [newDate(0), newDate(1), newDate(2), newDate(3), newDate(4), newDate(5), newDate(6)],
+    datasets: [{
+      label: "My First dataset",
+      data: [1, 3, 4, 2, 1, 4, 2],
+    }]
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        type: 'time',
+        time: {
+          displayFormats: {
+             'millisecond': 'MMM DD',
+            'second': 'MMM DD',
+            'minute': 'MMM DD',
+            'hour': 'MMM DD',
+            'day': 'MMM DD',
+            'week': 'MMM DD',
+            'month': 'MMM DD',
+            'quarter': 'MMM DD',
+            'year': 'MMM DD',
+          }
+        }
+      }],
+    },
+  }
+};
+var ctx = document.getElementById("myChart").getContext("2d");
+new Chart(ctx, config);
+    }
+
+      </script>
+   </head>
+   <body>
+      <canvas id="myChart"></canvas>
+   </body>
+</html>

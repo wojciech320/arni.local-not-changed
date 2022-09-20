@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Charts</title>
+
+    <style>
+        .chartBox {
+            position: relative;
+            height: 280px;
+        }
+
+        .chartButtons {
+            display: flex;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            column-gap: 3px;
+            align-items: flex-start;
+        }
+
+        .look {
+            width: 70px;
+            height: 25px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        'use strict';
+        $(document).ready(function () {
+            var ctx1 = document.getElementById('canvasChartTmp');
+            myChartTmp = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: xSensTmpVal,
+                    datasets: [
+                        {
+                            label: 'Ambient temperature °C -- x-axis day/hour',
+                            data: ySensTmpVal,
+                            backgroundColor: 'rgba(255,26,104,0.2)',
+                            borderColor: 'rgba(255,26,104,0.2)',
+                            yAxisID: 'y',
+                            tension: 0.4,
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            backgroundColor: 'rgba(255,26,104,0.2)',
+                            borderColor: 'rgba(255,26,104,0.2)',
+                            position: 'left',
+                        },
+                    },
+                },
+            });
+        });
+
+        //xAxes: [{
+        //    display: true,
+        //    type: 'time',
+        //    time: {
+        //        parser: 'MM/DD/YYYY HH:mm',
+        //        tooltipFormat: 'll HH:mm',
+        //        unit: 'day',
+        //        unitStepSize: 1,
+        //        displayFormats: {
+        //            'day': 'MM/DD/YYYY'
+        //        }
+        //    }
+        //}
+        //],
+
+
+
+    </script>
+</head>
+<body>
+    <div class="charts">
+        <div class="chartBox">
+            <canvas id="canvasChartTmp"></canvas>
+        </div>
+        <div class="chartButtons">
+            <button id="chartDay"
+                    type="button"
+                    onclick="getChartData($('#tmpId').val(), 0, 'tmp', 'fillUp', '8');">
+                <span class="look">8 hours</span>
+            </button>
+            <button id="chartWeek"
+                    type="button"
+                    onclick="getChartData($('#tmpId').val(), 0, 'tmp', 'fillUp', 'week');">
+                <span class="look">Week</span>
+            </button>
+            <button id="chartMonth"
+                    type="button"
+                    onclick="getChartData($('#tmpId').val(), 0, 'tmp', 'fillUp', 'month');">
+                <span class="look">Month</span>
+            </button>
+            <button id="chartYear"
+                    type="button"
+                    onclick="getChartData($('#tmpId').val(), 0, 'tmp', 'fillUp', 'year');">
+                <span class="look">Year</span>
+            </button>
+            <input id="tmpId"
+                   type="text"
+                   style="width: 85px;"
+                   value="Env-001-01" />
+        </div>
+    </div>
+</body>
+</html>

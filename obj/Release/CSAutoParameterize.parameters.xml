@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="AmbientDataConnectionString-Web.config Connection String" description="AmbientDataConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=DESKTOP-33LSD2O\SQLEXPRESS;Initial Catalog=AmbientData;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\ai\\VisualStudio\\arni\.local\\arni\.local\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='AmbientDataConnectionString']/@connectionString" />
+  </parameter>
+</parameters>

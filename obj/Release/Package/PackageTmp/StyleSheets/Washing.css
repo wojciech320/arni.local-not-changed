@@ -1,0 +1,53 @@
+﻿.container2 {
+    display: grid;
+    grid-template-columns: 45px 70px;
+    column-gap: 3px;
+    row-gap: 3px;
+    background: #ddd;
+    border: solid;
+    border-radius: 3px;
+    border-width: thin;
+    width: 120px;
+}
+
+.procedure {
+    grid-column: 1 / 2;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.dato {
+    background-color: #aee;
+    padding: 2px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.time {
+    background-color: #aee;
+    padding: 2px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.txtDate {
+    background-color: #add;
+    align-self: center;
+    text-align: center;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.txtTime {
+    background-color: #add;
+    align-self: center;
+    text-align: center;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.rule2 {
+    font-family: Verdana;
+    width: 300px;
+    background: #aaa;
+}

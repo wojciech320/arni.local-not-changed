@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>FlowCharts</title>
+
+    <!-- The container -->
+    <style>
+      .chartBox {
+        position: relative;
+        height: 280px;
+      }
+
+      .chartButtons {
+        display: flex;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        column-gap: 3px;
+        align-items: flex-start;
+      }
+
+      .look {
+        width: 70px;
+        height: 25px;
+      }
+    </style>
+
+    <!-- the Chart for flow measurments -->
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var ctxFlowFlow = document.getElementById('flowChartFlow');
+        myChartFlowFlow = new Chart(ctxFlowFlow, {
+          type: 'scatter', //'line',
+          data: {
+            labels: xSensFlowFlowVal,
+            datasets: [
+              {
+                label: 'Wash water flow L/min',
+                data: ySensFlowFlowVal,
+                backgroundColor: 'rgb(21, 89, 210,0.2)',
+                borderColor: 'rgb(21, 89, 210,0.2)',
+                yAxisID: 'y',
+                tension: 0.4,
+                showLine: true
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                type: 'linear',
+                backgroundColor: 'rgb(21, 89, 210,0.2)',
+                borderColor: 'rgb(21, 89, 210,0.2)',
+                position: 'left',
+              },
+            },
+          },
+        });
+      });
+
+    </script>
+  </head>
+  <body>
+    <div class="flowCharts">
+      <div class="chartBoxFlow">
+        <canvas id="flowChartFlow"></canvas>
+      </div>
+      <div class="chartButtons">
+        <button
+          id="chartDay"
+          type="button"
+          onclick="getChartData($('#flowFlowId').val(), 0, 'flowFlow', 'fillUp', '8');"
+        >
+          <span class="look">8 hours</span>
+        </button>
+        <button
+          id="chartWeek"
+          type="button"
+          onclick="getChartData($('#flowFlowId').val(), 0, 'flowFlow', 'fillUp', 'week');"
+        >
+          <span class="look">Week</span>
+        </button>
+        <button
+          id="chartMonth"
+          type="button"
+          onclick="getChartData($('#flowFlowId').val(), 0, 'flowFlow', 'fillUp', 'month');"
+        >
+          <span class="look">Month</span>
+        </button>
+        <button
+          id="chartYear"
+          type="button"
+          onclick="getChartData($('#flowFlowId').val(), 0, 'flowFlow', 'fillUp', 'year');"
+        >
+          <span class="look">Year</span>
+        </button>
+        <input
+          id="flowFlowId"
+          type="input"
+          style="width: 85px;"
+          value="Flo-001-01"
+        />
+      </div>
+    </div>
+  </body>
+</html>

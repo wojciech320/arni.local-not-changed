@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head >
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous">
+</script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js">
+</script>
+<!-- Loading of html documents -->
+<script>
+    $(function () {
+        $("#menuItems").load("Atom/Menu.html");
+    });
+    $(function () {
+        $("#washingStarted").load("Atom/WashingStarted.html");
+    });
+    $(function () {
+        $("#washingEnded").load("Atom/WashingEnded.html");
+    });
+    $(function () {
+        $("#timerDuration").load("Atom/TimerDuration.html");
+    });
+    $(function () {
+        $("#timerRemaining").load("Atom/TimerRemaining.html");
+    });
+    $(function () {
+        $("#sensorInfo").load("Atom/InfoFromSensors.html");
+    });
+</script>
+<!-- <script src="Washing/Washing.js"></script> -->
+ <script src="Washing/TimerFunctions.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#startWashing").click(function () {
+            var elm = $("#washingStarted").html();
+            //$(elm).find($("#txtDateStart")).text());
+            // alert($('#txtTimeStart').text());
+            //$('#txtTimeStart').text() = "arni";
+            //var txt = $('#txtTimeStart');
+            //txt.text = "arni";
+            //var txtStartD = $('#txtDateStart');
+            $('#txtDateStart').text(new Date().format("dd.MMM.yy"));
+            //txtStartD.text = new Date().format("dd.MMM.yy");
+            //txtStartD.style.backgroundColor = "#ebe";
+            //var txtStartT = $('#txtTimeStart');
+            $('#txtTimeStart').text(new Date().format("HH:mm"));
+            //txtStartT.style.backgroundColor = "#ebe";
+            //var sensId = $("#txtSensorPoolID").text();
+            //$.ajax({
+            //    url: "Sensors.asmx/StartWashing",
+            //    data: { sensorPoolId: sensId },
+            //    method: "post",
+            //    dataType: "xml",
+            //    error: function (request, status, error) {
+            //        alert(request.responseText);
+            //    },
+            //    success: function (data) {
+            //        var txtStartD = document.getElementById("txtStartDate");
+            //        txtStartD.value = new Date().format("dd.MMM.yy");
+            //        txtStartD.style.backgroundColor = "#ebe";
+            //        var txtStartT = document.getElementById("txtStartTime");
+            //        txtStartT.value = new Date().format("hh:mm");
+            //        txtStartT.style.backgroundColor = "#ebe";
+            //    },
+
+        setInterval(function () {
+            countDown();
+            //getSensorValue(1);
+        }, 1000);
+        });
+    });
+
+</script>
+ <!-- The container -->
+<style>
+.wrapper {
+  display:grid;
+  grid-template-columns: 0.5fr 3fr 1.5fr;
+}
+.box2 {
+  display: grid;
+  grid-template-columns: 210px 175px 175px 210px;
+  grid-template-rows: 40px 40px 110px 90px;
+ /* grid-gap: 10px;*/
+  border: 4px solid #ddd;
+}
+.heading {
+  grid-column: 1 / span 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.5em;
+  background-color: #8ed;
+}
+.menu {
+  display: flex;
+  grid-row: 1 / span 4;
+  /* align-items: top; */
+  justify-content: start;
+}
+</style>
+<title></title>
+<script type="text/javascript" >
+
+    //setInterval(function () {
+    //    countDown();
+    //    //getSensorValue(1);
+    //}, 1000);
+
+    function timeLapsed() {
+        var timeStart = new Date($("#txtStarted").val());
+        var dato = new Date();
+        var days = parseInt((dato - timeStart) / (1000 * 60 * 60 * 24));
+        var hours = parseInt(Math.abs(dato - timeStart) / (1000 * 60 * 60) % 24);
+        var minutes = parseInt(Math.abs(dato.getTime() - timeStart.getTime()) / (1000 * 60) % 60);
+        var seconds = parseInt(Math.abs(dato.getTime() - timeStart.getTime()) / (1000) % 60);
+        if (hours.toString().length == 1) {
+            hours = "0" + hours;
+        }
+        if (minutes.toString().length == 1) {
+            minutes = "0" + minutes;
+        }
+        if (seconds.toString().length == 1) {
+            seconds = "0" + seconds;
+            //alert(seconds - $("#txtRemSS").text());
+        }
+        $("#txtDurSS").text(seconds);
+        $("#txtDurMM").text(minutes);
+        $("#txtDurHH").text(hours);
+    }
+
+</script>
+<script type="text/javascript">
+    var xSens1Val = [];
+    var ySens1Val = [];
+    var xSens2Val = [];
+    var ySens2Val = [];
+    var myChart1;
+    var myChart1;
+    window.onload = function () {
+        var ctx1 = document.getElementById('myChart1');
+        var ctx2 = document.getElementById('myChart2');
+        myChart1 = new Chart(ctx1, {
+            outerWidth: 500,
+            type: 'line',
+            data: {
+                labels: xSens1Val,
+                datasets: [{
+                    label: 'Rh %',
+                    data: ySens1Val,
+                    backgroundColor: 'rgba(255,26,104,0.2)',
+                    borderColor: 'rgba(255,26,104,0.2)',
+                    yAxisID: 'y',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        type: 'linear',
+                        backgroundColor: 'rgba(255,26,104,0.2)',
+                        borderColor: 'rgba(255,26,104,0.2)',
+                        position: 'left'
+                    }
+                }
+            }
+        })
+        myChart2 = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: xSens2Val,
+                datasets: [{
+                    label: 'Rh %',
+                    data: ySens2Val,
+                    backgroundColor: 'rgba(255,26,104,0.2)',
+                    borderColor: 'rgba(255,26,104,0.2)',
+                    yAxisID: 'y',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        type: 'linear',
+                        backgroundColor: 'rgba(255,26,104,0.2)',
+                        borderColor: 'rgba(255,26,104,0.2)',
+                        position: 'left'
+                    }
+                }
+            }
+        })
+    };
+
+    function addData(lbl, yVal) {
+        xValues.push(lbl);
+        yValues.push(yVal);
+        myChart1.update();
+    };
+
+    function getSensorValue1(sensorId, count) {
+        $.ajax({
+            url: "Sensors.asmx/GetLatestSensorValue",
+            data: { sensorId: sensorId, Scount: count },
+            method: "post",
+            dataType: "xml", //"json",
+            error: function (request, status, error) {
+                alert(request.responseText);
+            },
+            success: function (xml) {
+                if (count > 1) {
+                    $(xml).find('Sensor').each(function () {
+                        var dato = new Date($(this).find('Timeing').text());
+                        xSens1Val.push(dato.format("hh:mm:ss"));
+                        ySens1Val.push($(this).find('SensorValue').text());
+                    });
+                } else {
+                    $(xml).find('Sensor').each(function () {
+                        var dato = new Date($(this).find('Timeing').text());
+                        xSens1Val.push(dato.format("hh:mm:ss"));
+                        ySens1Val.push($(this).find('SensorValue').text());
+                        xSens1Val.shift();
+                        ySens1Val.shift();
+                    });
+                }
+                myChart1.update();
+            },
+        });
+    };
+    function getSensorValue2(sensorId, count) {
+        $.ajax({
+            url: "Sensors.asmx/GetLatestSensorValue",
+            data: { sensorId: sensorId, Scount: count },
+            method: "post",
+            dataType: "xml", //"json",
+            error: function (request, status, error) {
+                alert(request.responseText);
+            },
+            success: function (xml) {
+                if (count > 1) {
+                    $(xml).find('Sensor').each(function () {
+                        var dato = new Date($(this).find('Timeing').text());
+                        //xValues.push(dato.format("hh:mm:ss"));
+                        yValpress.push($(this).find('SensorValue').text());
+                    });
+                } else {
+                    $(xml).find('Sensor').each(function () {
+                        var dato = new Date($(this).find('Timeing').text());
+                        xValues.push(dato.format("hh:mm:ss"));
+                        yValues.push($(this).find('SensorValue').text());
+                        xValues.shift();
+                        yValues.shift();
+                    });
+                }
+                myChart.update();
+            },
+        });
+    };
+    function getData1(sensorId, count, tmp) {
+        getSensorValue1(sensorId, $("#sensId1Count").val());
+        //getTwoSensorValues(sensorId, count, tmp);
+    };
+    function getData2(sensorId, count, tmp) {
+        getSensorValue2(sensorId, $("#sensId2Count").val());
+        //getTwoSensorValues(sensorId, count, tmp);
+    };
+    var yTmpValues = [];
+    var xTmpValues = [];
+    var yHumValues = [];
+    var xHumValues = [];
+    function getTwoSensorValues(sensorId, count, tmp) {
+        $.ajax({
+            url: "Sensors.asmx/GetLatestSensorValue",
+            data: { sensorId: sensorId, Scount: count },
+            method: "post",
+            dataType: "xml",
+            error: function (request, status, error) {
+                alert(request.responseText);
+            },
+            success: function (xml) {
+                if (tmp) {
+                    $(xml).find('Sensor').each(function () {
+                        var dato = new Date($(this).find('Timeing').text());
+                        //tmpValues.push = { x: dato.format("hh:mm:ss"), y: $(this).find('SensorValue').text() };
+                        xTmpValues.push(dato.format("hh:mm:ss"));
+                        yTmpValues.push($(this).find('SensorValue').text());
+                    });
+                } else {
+                    $(xml).find('Sensor').each(function () {
+                        var dato = new Date($(this).find('Timeing').text());
+                        //xHumValues.push(dato.format("hh:mm:ss"));
+                        yHumValues.push($(this).find('SensorValue').text());
+                    });
+                }
+                //if (upDate) {
+                myChart.update();
+                //}
+            },
+        });
+    }
+</script>
+
+</head>
+<body>
+  <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <div class="wrapper">
+      <!-- Menu -->
+      <div id="menuItems" class="menu"></div>
+      <!-- Main -->
+      <div class="box2">
+        <!-- Line 1 -->
+        <div class="heading">
+          Overview of the washing proceedure
+        </div>
+        <!-- Line 2 -->
+        <div>
+          <input type="button" id="startWashing" value="Start Washing" style="background-color: #8DA8F5; height: 30px; width: 100px" />
+        </div>
+        <div> </div>
+        <div> </div>
+        <div> </div>
+        <!-- Line 3 -->
+        <!-- Washing started -->
+        <div id="washingStarted"> </div>
+        <div id="timerDuration"> </div>
+        <div id="timerRemaining"> </div>
+        <div id="washingEnded"> </div>
+
+          <!-- Line 1 -->
+        <div id="sensorInfo">
+        </div>
+
+        <!-- <input id="txtBatchId" type="text" value="50200-22" style="font-size: large; height: 30px; width: 100px" /> -->
+      </div>
+      <!-- Column 3 -->
+      <!-- Charts -->
+      <div class="box3">
+        <canvas id="myChart1"  ></canvas>
+        <button id="chartAddTmp" type="button" onclick="getData1('Env-001-02', '100', 'true' );">Update tmp chart</button>
+        <input id="sensId1" value="Env-001-01" /><input id="sensId1Count" value="100" />
+        <canvas id="myChart2"></canvas>
+        <button id="chartAddHum" type="button" onclick="getData2('Env-001-03', '100', 'true' );" >Update humidity chart</button>
+        <input id="sensId2" value="Env-001-03"/><input id="sensId2Count" value="100"/>
+      </div>
+    </div>
+  </form>
+</body>
+</html>

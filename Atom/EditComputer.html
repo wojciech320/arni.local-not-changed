@@ -1,0 +1,91 @@
+<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+  <title>Edit computer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"
+  ></script>
+  <script src="Washing/TimerFunctions.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#save").click(function () {
+        saveComputerData();
+      });
+    });
+  </script>
+  <style>
+    .container2 {
+      display: grid;
+      grid-template-rows: auto auto auto auto auto auto auto;
+            /* grid-template-rows: 30px 30px 60px 30px 30px 60px auto; */
+      row-gap: 5px;
+      /* padding: 5px; */
+      background-color: aqua;
+      border-color: #cc3300;
+      padding: 30px;
+      top: 100px;
+      left: 100px;
+      width: 400px;
+      height: 500px;
+      /*display: none;*/
+    }
+
+    .item {
+      border-color: #000000;
+      border: 4px dashed;
+      padding: 5px;
+    }
+    .inputs {
+      /* border: 5px solid rgbrgb(250, 250, 250); */
+      border-radius: 5px;
+      /* width: 150px; */
+      /* height: 100px; */
+    }
+
+  </style>
+</head>
+<body>
+  <form id="form1" runat="server">
+    <div class="container2">
+        <div>
+          <span>Name</span><br /><input id="Name" class="inputs" type="text" name="" value="" style="width: 150px;" />
+          <span>Id: </span><span id="ComputerId" style="background-color: rgb(40, 137, 207);">Id</span>
+        </div>
+        <div>
+          <span>Type</span> <br /> <input id="Type" class="inputs" type="text" name="" value="" style="width: 150px;" />
+        </div>
+        <div>
+          <span>Discription</span><br /><textarea id="Discription" class="inputs" type="text" name="" value="" style="width: 250px; height: 60px;"  ></textarea>
+        </div>
+        <div>
+          <span>Location</span><br /><input id="Location" class="inputs" type="text" name="" value="" style="width: 150px;" />
+        </div>
+        <div>
+          <span>Address</span><br /><input id="Address" class="inputs" type="text" name="" value="" style="width: 150px;" />
+        </div>
+        <div>
+          <span>Activation</span><br /><input id="Activation" class="inputs" type="text" name="" value="" style="width: 150px;" />
+        </div>
+        <div>
+          <span>Log</span><br /><textarea id="Log" class="inputs" type="text" name="" value="" style="width: 250px; height: 60px;" ></textarea>
+        </div>
+        <div>
+          <button id="save" class="inputs" type="button" name="button">Save changes</button>
+        </div>
+    </div>
+</div>
+  </form>
+</body>
+</html>
+</html>
+<!-- //     this.ComputerId = computerId;
+//     this.Name = name;
+//     this.Description = description;
+//     this.Type = type;
+//     this.Location = location;
+//     this.Address = address;
+//     this.Activation = activation;
+//     this.Log = log; -->
